@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>File Shifter | Node.js Core & Stream Engineering by Usman Ghani</title>
+  <meta name="description" content="Exploring Node.js internals: A zero-dependency LAN file transfer server implemented with native HTTP and Stream modules. No Express, no libraries." />
+  <meta name="keywords" content="Node.js Core, HTTP Streams, Buffer Management, LAN File Sharing, No-Framework JavaScript, System Programming, Usman Ghani" />
+
+  <link rel="stylesheet" href="../public/stylesheets/styles.css" />
+  <link rel="icon" type="image/png" href="/public/favicon/favicon-96x96.png" sizes="96x96" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareSourceCode",
+    "name": "File Shifter",
+    "author": {
+      "@type": "Person",
+      "name": "Usman Ghani"
+    },
+    "description": "Zero-dependency local file transfer server built using Node.js native modules.",
+    "programmingLanguage": "JavaScript",
+    "runtimePlatform": "Node.js",
+    "codeRepository": "https://github.com/usmandev24/file_shifter"
+  }
+  </script>
+
+  <style>
+    .project-hero-scroll {
+      height: 400px;
+      overflow: hidden;
+      position: relative;
+      border-radius: 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .project-hero-scroll img {
+      width: 100%;
+      height: auto;
+      transition: transform 5s linear;
+      transform: translateY(0);
+    }
+    .project-hero-scroll:hover img {
+      transform: translateY(calc(-100% + 400px));
+    }
+  </style>
+</head>
+
+<body class="bg-base-100 text-base-content font-sans antialiased">
+
+  <nav class="fixed top-0 left-0 z-10 bg-base-100/90 p-4 max-w-7xl mx-auto w-full flex justify-between items-center border-b border-base-300/20">
+    <a href="../index.html" class="btn btn-ghost btn-sm sm:btn-md gap-2">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+      </svg>
+      Back
+    </a>
+    <div class="flex gap-4">
+      <a href="https://github.com/usmandev24/file_shifter" target="_blank" class="btn btn-primary btn-sm">View Source</a>
+      <span class="badge badge-outline hidden sm:flex">GPL License</span>
+    </div>
+  </nav>
+
+  <main class="max-w-4xl mx-auto px-6 py-12 mt-14">
+
+    <header class="mb-16">
+      <div class="flex items-center gap-3 mb-2">
+        <span class="badge badge-sm px-4 badge-neutral">CORE MODULES ONLY</span>
+        <span class="badge badge-ghost badge-sm font-mono text-[10px]">v1.0.0</span>
+      </div>
+      <h1 class="text-5xl font-black mb-4">File Shifter</h1>
+      <p class="text-xl opacity-95 leading-relaxed mb-8">
+        A high-performance LAN relay server built to master the <strong>Node.js Event Loop</strong>, 
+        <strong>Writable/Readable Streams</strong>, and <strong>low-level HTTP parsing</strong>.
+      </p>
+
+      <div class="project-hero-scroll shadow-2xl">
+        <img src="../public/img/file-shifter-fullpage.png" alt="File Shifter UI Preview">
+        <div class="absolute bottom-4 right-4 badge badge-neutral p-3 shadow-lg">Hover to scroll UI</div>
+      </div>
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+      <aside class="space-y-8">
+        <div>
+          <h4 class="text-sm uppercase tracking-widest font-bold opacity-90 mb-4">The Constraints</h4>
+          <ul class="space-y-2 font-mono text-sm">
+            <li class="flex items-center gap-2 text-error"><span class="w-2 h-2 rounded-full bg-error"></span> No Express.js</li>
+            <li class="flex items-center gap-2 text-error"><span class="w-2 h-2 rounded-full bg-error"></span> No Socket.io</li>
+            <li class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-success"></span> HTTP Native</li>
+            <li class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-success"></span> FS Streams</li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-sm uppercase tracking-widest font-bold opacity-90 mb-4">Implementation</h4>
+          <div class="space-y-4">
+            <div class="p-3 bg-base-200 rounded-lg border border-base-300">
+              <span class="text-sm font-bold text-primary">Chunk-Based Uploads</span>
+              <p class="text-sm mt-1 opacity-90">Manual implementation of resumable binary transfers via data chunks.</p>
+            </div>
+            <div class="p-3 bg-base-200 rounded-lg border border-base-300">
+              <span class="text-sm font-bold text-secondary">Relay Architecture</span>
+              <p class="text-sm mt-1 opacity-90">Streaming data directly from request to response without memory bloating.</p>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <section class="md:col-span-2 space-y-12">
+        <div>
+          <h3 class="text-2xl font-black mb-4">Project Intent</h3>
+          <p class="opacity-95 leading-relaxed">
+            File Shifter was built as an educational deep-dive into <strong>Node.js internals</strong>. By stripping away frameworks like Express, I manually implemented request/body parsing, cookie handling, and routing. The goal was to understand exactly how the server handles backpressure and binary data at the system level.
+          </p>
+        </div>
+
+        <div class="divider"></div>
+
+        <div>
+          <h3 class="text-2xl font-black mb-4">Technical Breakthroughs</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div class="space-y-2">
+              <strong class="text-primary italic">Live Relay Mode</strong>
+              <p class="text-sm opacity-90">Recipients can start downloading/streaming a file <em>while</em> it's still being uploaded by the sender, acting as a pass-through pipe.</p>
+            </div>
+            <div class="space-y-2">
+              <strong class="text-secondary italic">Identity Management</strong>
+              <p class="text-sm opacity-90">Manual cookie parsing and device verification logic implemented without third-party middleware.</p>
+            </div>
+            <div class="space-y-2">
+              <strong class="text-accent italic">Network Awareness</strong>
+              <p class="text-sm opacity-90">Dynamic QR code generation and IP tracking to ensure the server link remains valid across LAN changes.</p>
+            </div>
+            <div class="space-y-2">
+              <strong class="text-neutral italic">Buffer Efficiency</strong>
+              <p class="text-sm opacity-90">Utilizing <code>PassThrough</code> streams to ensure minimal RAM usage even when transferring multi-gigabyte files.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-base-200 p-8 rounded-2xl border border-base-300">
+          <h3 class="text-2xl font-black mb-6">Deployment & Setup</h3>
+          
+          <div class="space-y-6">
+            <div>
+              <h4 class="text-sm font-bold uppercase mb-2 flex items-center gap-2">
+                <i class="fa-brands fa-windows text-blue-500"></i> Windows (Automated)
+              </h4>
+              <p class="text-sm opacity-80 mb-2">Uses a custom PowerShell installer to prepare the Node.js environment.</p>
+              <p class="text-sm opacity-90 mb-3">Download from here <a class=" link link-info" href="https://github.com/UsmanDev24/file_shifter/releases/download/2.4.2/file_shifter-2.4.2.zip" target="_blank">File-Shifter</a> </p>
+              <div class="mockup-code text-sm">
+                <pre data-prefix=">"><code>Run install.cmd (Extract first)</code></pre>
+                <pre data-prefix=">"><code>Execute App.bat</code></pre>
+              </div>
+            </div>
+
+            <div>
+              <h4 class="text-sm font-bold uppercase mb-2 flex items-center gap-2">
+                <i class="fa-brands fa-linux text-orange-500"></i> Linux (Manual)
+              </h4>
+              <div class="mockup-code text-sm">
+                <pre data-prefix="$"><code>sudo apt install nodejs</code></pre>
+                <pre data-prefix="$"><code>npm install && npm start</code></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer footer-center p-12 bg-base-200 text-base-content border-t border-base-content/5">
+    <div class="flex gap-6 mb-4">
+      <a href="mailto:usman.dev24@gmail.com" target="_blank"
+        class="hover:text-primary transition-colors hover:scale-110 transform">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
+        </svg>
+      </a>
+      <a href="https://github.com/usmandev24" target="_blank" rel="noopener noreferrer"
+        class="hover:text-primary transition-colors hover:scale-110 transform inline-block">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+        </svg>
+      </a>
+    </div>
+    <p class="font-bold opacity-50 uppercase tracking-[0.3em] text-xs">
+      © 2025 Usman Ghani
+    </p>
+  </footer>
+
+</body>
+</html>
