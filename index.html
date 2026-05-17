@@ -41,10 +41,32 @@
     }
   }
 </style>
+<style>
+  @keyframes gridDrift {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 32px 32px;
+    }
+  }
+
+  .animated-tech-grid {
+    /* Light Mode Dots */
+    background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
+    background-size: 16px 16px;
+    animation: gridDrift 25s linear infinite;
+  }
+
+  /* Dark Mode Dots */
+  .dark .animated-tech-grid {
+    background-image: radial-gradient(#1e293b 1px, transparent 1px);
+  }
+</style>
 </head>
 
 
-<body class="bg-base-100 text-base-content min-h-screen flex flex-col scroll-smooth">
+<body class="min-h-screen bg-fixed animated-tech-grid text-base-content antialiased">
   <div
     class="navbar border-b border-b-base-300/10 backdrop-blur-md bg-base-100/80  fixed  top-0 z-40  w-full px-4 lg:px-20">
     <div class="navbar-start">
@@ -90,25 +112,26 @@
     </div>
   </div>
 
-  <section id="home" class="hero min-h-screen bg-linear-to-r dark:from-green-950/70 dark:to-pink-950/70 from-green-100 to-pink-100 relative overflow-hidden py-20">
-    <div class="absolute inset-0 opacity-5 pointer-events-none">
-      <div class="absolute top-20 left-10 w-72 h-72 bg-primary rounded-full filter blur-3xl"></div>
-      <div class="absolute bottom-20 right-10 w-96 h-96 bg-secondary rounded-full filter blur-3xl"></div>
-    </div>
+<section id="home" class="hero min-h-screen relative overflow-hidden py-16 md:py-24 flex items-center bg-linear-to-r dark:from-base-100/90 dark:to-base-100/70 from-green-100 to-pink-100  ">
+  
+  
 
-    <div class="hero-content text-center z-10">
-      <div class="max-w-2xl">
-        <h1 class="text-6xl md:text-8xl font-black mb-6 tracking-tighter">
+  <div class="hero-content max-w-7xl mx-auto px-4 z-10 w-full">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      
+      <!-- Left Column: Your Exact Original Content & Text Layout -->
+      <div class="lg:col-span-7 text-center lg:text-left order-2 lg:order-1">
+        <h1 class="text-5xl md:text-6xl font-black mb-6 tracking-tighter leading-none">
           Hello, I'm <br />
           <span class="text-primary bg-clip-text">Usman Ghani</span>
         </h1>
 
-        <p class="text-xl md:text-2xl font-medium  leading-relaxed mb-4">
+        <p class="text-xl md:text-2xl font-medium leading-relaxed mb-4">
           Aspiring
-          <span class=" font-extrabold tracking-tight text-secondary">Full-Stack Developer</span>
+          <span class="font-extrabold tracking-tight text-secondary">Full-Stack Developer</span>
         </p>
 
-        <p class="text-lg  max-w-xl mx-auto leading-relaxed mb-10">
+        <p class="text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed mb-10">
           Developing a strong foundation in
           <span class="font-mono text-primary">Node.js</span>,
           <span class="font-mono text-primary">Express</span>,
@@ -117,7 +140,7 @@
           deep learning through hands-on practice.
         </p>
 
-        <div class="flex flex-col sm:flex-row justify-center gap-4">
+        <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
           <a href="#projects" class="btn btn-primary btn-lg px-10 shadow-xl group">
             See Learning Projects
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 group-hover:translate-x-1 transition-transform"
@@ -128,14 +151,35 @@
           <a href="#about" class="btn btn-outline btn-lg px-10">Learn More</a>
         </div>
       </div>
+
+      <!-- Right Column: Modern Tech Window Frame for Your Picture -->
+      <div class="lg:col-span-5 flex justify-center order-1 lg:order-2">
+  <div class="relative group w-80 max-w-sm md:max-w-md aspect-square">
+    
+    <!-- Smooth Dynamic Glow Accent behind the image -->
+    <div class="absolute inset-0 bg-linear-to-tr from-primary/30 to-secondary/30 rounded-3xl blur-xl opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out pointer-events-none"></div>
+    
+    <!-- Minimalist Glass Frame -->
+    <div class="relative h-full w-full bg-base-100/20 dark:bg-neutral-950/20 p-3 rounded-3xl border border-base-content/10 dark:border-neutral-800 shadow-2xl backdrop-blur-md transform group-hover:-translate-y-2 transition-all duration-500 ease-out overflow-hidden">
+      <img 
+        src="https://github.com/usmandev24.png" 
+        alt="Usman Ghani" 
+        class="w-full h-full object-cover rounded-2xl transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+      />
     </div>
-  </section>
+
+  </div>
+</div>
+
+    </div>
+  </div>
+</section>
 
   <!--Projects section-->
 
-  <section id="projects" class="py-20 ">
+  <section id="projects" class="py-20 bg-base-100/80 ">
   <div class="max-w-7xl  mx-auto px-6">
-    <div class="mb-16 text-center">
+    <div class="mb-16 text-center ">
       <h2 class="text-4xl font-black mb-4">Learning Projects</h2>
       <p class="text-lg  max-w-2xl mx-auto">
         A collection of systems and applications built to master the 
@@ -166,19 +210,19 @@
             <span class="badge badge-outline badge-xs text-[11px] xs:badge-sm ">Prisma ORM</span>
             
           </div>
-          <h3 class="card-title text-xl font-bold mb-2">PostBase</h3>
+          <h3 class="card-title text-xl font-bold mb-2">userPost</h3>
           <p class="text-sm  line-clamp-3 mb-4">
             A full-stack social architecture focused on identity management and relational data modeling.
           </p>
           <div class="card-actions gap-2 mt-auto pt-4 border-t border-base-300/90">
-            <a href="https://postbase.usman-ghani.dev/" target="_blank" class="btn btn-primary btn-sm">Live</a>
-            <a href="https://github.com/usmandev24/postbase" target="_blank" class="btn btn-outline btn-sm">GitHub</a>
+            <a href="https://userpost.usman-ghani.dev/" target="_blank" class="btn btn-primary btn-sm">Live</a>
+            <a href="https://github.com/usmandev24/userpost" target="_blank" class="btn btn-outline btn-sm">GitHub</a>
             <a href="/projects/postbase.html" class="btn btn-ghost btn-sm underline underline-offset-4">Details</a>
           </div>
         </div>
       </div>
 
-      <div class="group card bg-linear-to-r dark:from-green-950/40 dark:to-pink-950/40 from-green-100/90 to-pink-100/90 shadow-lg hover:shadow-2xl border border-base-300 transition-all duration-300">
+      <div class="group card bg-linear-to-r dark:from-green-950/60 dark:to-pink-950/60 from-green-100/90 to-pink-100/90 shadow-lg hover:shadow-2xl border border-base-300 transition-all duration-300">
         <figure class="relative aspect-video overflow-hidden dark:hidden  bg-base-300 xs:m-4 mb-0 xs:mb-0 rounded-lg border border-base-300">
           <img src="public/img/fileshifter-dark.png" alt="File Shifter" class="group-hover:scale-105 transition-transform duration-500 object-cover w-full h-full" />
         </figure>
@@ -254,7 +298,7 @@
   </div>
 </section>
 
-  <section id="about" class="py-24 px-6 sm:px-8 bg-base-100">
+  <section id="about" class="py-24 px-6 sm:px-8 bg-base-100/60 ">
     <div class="container mx-auto max-w-4xl">
       <h2 class="text-4xl font-black text-center mb-12">About Me</h2>
       <div class="card bg-base-200 border border-base-300 shadow-2xl">
@@ -281,7 +325,7 @@
     </div>
   </section>
 
-  <section id="skills" class="py-24 px-6 sm:px-8 bg-base-200">
+  <section id="skills" class="py-24 px-6 sm:px-8 bg-base-100/90">
     <div class="container mx-auto max-w-5xl">
       <h2 class="text-4xl font-black text-center mb-16">
         Current Skills (In Progress)
@@ -382,17 +426,17 @@
         </div>
         <div class="flex flex-col items-center group">
           <div
-            class="w-20 h-20 mb-4 flex items-center justify-center p-3 bg-base-100 rounded-2xl shadow-md group-hover:scale-110 transition-transform opacity-70">
+            class="w-20 h-20 mb-4 flex items-center justify-center p-3 bg-base-100 rounded-2xl shadow-md group-hover:scale-110 transition-transform opacity-90">
             <img src="public/assets/third-party-img/devOps_logo.png" alt="DevOps" class="max-h-full object-contain" />
           </div>
           <p class="font-bold text-[1rem] mb-3">DevOps</p>
-          <progress class="progress w-full" value="20" max="100"></progress>
+          <progress class="progress w-full" value="40" max="100"></progress>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="contact" class="py-24 px-6 sm:px-8 bg-base-100">
+  <section id="contact" class="py-24 px-6 sm:px-8 bg-base-100/80 ">
     <div class="container mx-auto max-w-4xl text-center">
       <h2 class="text-4xl font-black mb-6 italic underline decoration-primary decoration-4">
         Get in Touch
@@ -422,7 +466,7 @@
     </div>
   </section>
 
-  <footer class="footer footer-center p-12 bg-base-300 text-base-content border-t border-base-content/5">
+  <footer class="footer footer-center p-12 bg-base-300/80 text-base-content border-t border-base-content/5">
     <div class="flex gap-6 mb-4">
       <a href="mailto:usman.dev24@gmail.com" target="_blank"
         class="hover:text-primary transition-colors hover:scale-110 transform">
@@ -440,9 +484,10 @@
       </a>
     </div>
     <p class="font-bold opacity-50 uppercase tracking-[0.3em] text-xs">
-      © 2025 Usman Ghani
+      © 2026 Usman Ghani
     </p>
   </footer>
+</div>
 </body>
 
 </html>
