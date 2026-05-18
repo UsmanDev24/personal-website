@@ -4,13 +4,18 @@
 @source '../../projects/file-shifter.html';
 
 @plugin "daisyui" {
-  themes: "greenp" --default , dark --prefersdark;
+  /* FIX 1: Point prefersdark to your actual custom dark theme name */
+  themes: "greenp" --default , "greenp-dark" --prefersdark;
 }
+
 @plugin "daisyui/theme" {
   name: "greenp-dark";
   default: false;
   prefersdark: true;
   color-scheme: "dark";
+
+  /* FIX 2: Define a soft white dot color for dark mode */
+  --grid-dot: rgba(255, 255, 255, 0.30);
 
   --color-base-100: oklch(14% 0.025 120.757); 
   --color-base-200: oklch(22% 0.028 122.328); 
@@ -39,12 +44,15 @@
   --border: 1.5px;
 }
 
-
 @plugin "daisyui/theme" {
   name: "greenp";
   default: true;
   prefersdark: false;
   color-scheme: "light";
+
+  /* FIX 2: Define a soft dark dot color for light mode */
+  --grid-dot: rgba(0, 0, 0, 0.30);
+
   --color-base-100: oklch(98% 0.031 120.757);
   --color-base-200: oklch(96% 0.067 122.328);
   --color-base-300: oklch(93% 0.127 124.321);
@@ -77,4 +85,25 @@
 
 @theme {
   --breakpoint-xs : 28rem
+}
+
+@layer utilities {
+  @keyframes gridDrift {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 32px 32px;
+    }
+  }
+
+  /* 
+    FIX 3: One unified utility class that reads your 
+    active DaisyUI theme's '--grid-dot' variable automatically!
+  */
+  .animated-tech-grid {
+    background-image: radial-gradient(var(--grid-dot) 1px, transparent 1px);
+    background-size: 16px 16px;
+    animation: gridDrift 25s linear infinite;
+  }
 }

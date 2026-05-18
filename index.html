@@ -59,36 +59,11 @@
         }
       }
     </style>
-    <style>
-      @keyframes gridDrift {
-        0% {
-          background-position: 0 0;
-        }
-
-        100% {
-          background-position: 32px 32px;
-        }
-      }
-
-      .animated-tech-grid {
-        /* Light Mode Dots */
-        background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
-        background-size: 16px 16px;
-        animation: gridDrift 25s linear infinite;
-      }
-
-      /* Dark Mode Dots */
-      .dark .animated-tech-grid {
-        background-image: radial-gradient(#1e293b 1px, transparent 1px);
-      }
-    </style>
   </head>
 
-  <body
-    class="min-h-screen bg-fixed animated-tech-grid text-base-content antialiased"
-  >
+  <body class="min-h-screen bg-fixed text-base-content antialiased animated-tech-grid">
     <div
-      class="navbar border-b border-b-base-300/10 backdrop-blur-md bg-base-100/80 fixed top-0 z-40 w-full px-4 lg:px-20"
+      class="navbar border-b border-b-base-300/10 backdrop-blur-md bg-base-100/40 fixed top-0 z-40 w-full px-4 lg:px-20"
     >
       <div class="navbar-start">
         <div class="dropdown lg:hidden">
@@ -169,7 +144,7 @@
 
     <section
       id="home"
-      class="hero min-h-screen relative overflow-hidden py-16 md:py-24 flex items-center bg-linear-to-r dark:from-base-100/90 dark:to-base-100/70 from-green-100 to-pink-100"
+      class="hero min-h-screen relative overflow-hidden py-16 md:py-24 flex items-center bg-linear-to-r dark:from-base-100/60 dark:to-base-100/50 from-green-100/70 to-pink-100/70"
     >
       <div class="hero-content max-w-7xl mx-auto px-4 z-10 w-full">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -255,9 +230,9 @@
 
     <!--Projects section-->
 
-    <section id="projects" class="py-20 bg-base-100/80">
-      <div class="max-w-7xl mx-auto px-6">
-        <div class="mb-16 text-center">
+    <section id="projects" class="py-20 bg-base-100/40">
+      <div class="max-w-7xl mx-auto px-6 ">
+        <div class="mb-16 text-center ">
           <h2 class="text-4xl font-black mb-4">Learning Projects</h2>
           <p class="text-lg max-w-2xl mx-auto">
             A collection of systems and applications built to master the
@@ -517,7 +492,7 @@
       </div>
     </section>
 
-    <section id="about" class="py-24 px-6 sm:px-8 bg-base-100/60">
+    <section id="about" class="py-24 px-6 sm:px-8 ">
       <div class="container mx-auto max-w-4xl">
         <h2 class="text-4xl font-black text-center mb-12">About Me</h2>
         <div class="card bg-base-200 border border-base-300 shadow-2xl">
@@ -546,7 +521,7 @@
       </div>
     </section>
 
-    <section id="skills" class="py-24 px-6 sm:px-8 bg-base-100/90">
+    <section id="skills" class="py-24 px-6 sm:px-8 bg-base-100/40">
       <div class="container mx-auto max-w-5xl">
         <h2 class="text-4xl font-black text-center mb-16">
           Current Skills (In Progress)
@@ -710,7 +685,7 @@
       </div>
     </section>
 
-    <section id="contact" class="py-24 px-6 sm:px-8 bg-base-100/80">
+    <section id="contact" class="py-24 px-6 sm:px-8">
       <div class="container mx-auto max-w-4xl text-center">
         <h2
           class="text-4xl font-black mb-6 italic underline decoration-primary decoration-4"
